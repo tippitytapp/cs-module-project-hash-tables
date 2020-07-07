@@ -5,35 +5,59 @@ class HashTableEntry:
     def __init__(self, key, value):
         self.key = key
         self.value = value
+        # make a Linked List Node by adding a next node
         self.next = None
+        # add a head node to add to head
         self.head = None
 
+    # Insert the node into the head of the linked list
     def insert_head(self, node):
+        # set new nodes next to self.head
         node.next = self.head
+        # change the self.head to the new node
         self.head = node
     
+    # Search for the node in the linked list
     def search(self, target):
+        # set curren node to the head to start searching from the beginning
         cur_node = self.head
+        # keep searching till the end of the list
         while cur_node is not None:
-            if cur_node.value == value:
+            # if the  value is the target, return noce
+            if cur_node.value == target:
                 return cur_node
+            # else set current node to the next
             cur_node = cur_node.next
+        # if you dont find it in the LL, return none
         return None
 
     def delete_node(self, target):
+        # set current node to the head to start looking for the target
         cur_node = self.head
+        # if the value of the current node is the target
         if cur_node.value == target:
+            # set head to its next property
             self.head = self.head.next
+            # return the current node
             return cur_node
+        # set previous node to current node
         prev_node = cur_node
+        # set current node to the next node
         cur_node = cur_node.next
+        # loop through the list until the end
         while cur_node is not None:
+            # if the current node is the target
             if cur_node.value == target:
+                # set the prev node to the next node
                 prev_node.next = cur_node.next
+                # return the current node
                 return cur_node
             else:
+                # set previous node to the previous node next
                 prev_node = prev_node.next
+                # set the current node to the next node
                 cur_node = cur_node.next
+        # if it doesn't exist, print none
         return None
 
 
