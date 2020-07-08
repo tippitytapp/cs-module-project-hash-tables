@@ -3,6 +3,14 @@
 
 def expensive_seq(x, y, z):
     # Your code here
+    cache = {}
+    def exp_seq_in(x, y, z):
+        if x <= 0:
+            return (y + z)
+        if x not in cache:
+            cache[(x,y,z)] = exp_seq_in(x-1, y+1, z) + exp_seq_in(x-2, y+2, z*2) + exp_seq_in(x-3, y+3, z*3)
+        return cache[(x,y,z)]
+    return exp_seq_in(x, y, z)
 
 
 

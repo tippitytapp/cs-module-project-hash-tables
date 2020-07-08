@@ -2,6 +2,7 @@
 import random
 import math
 
+cache={}
 def slowfun_too_slow(x, y):
     v = math.pow(x, y)
     v = math.factorial(v)
@@ -16,16 +17,15 @@ def slowfun(x, y):
     output, but completes quickly instead of taking ages to run.
     """
     # Your code here
-    lookup_table = {}
+
     def slowfun_inner(x, y):
         v = math.pow(x, y)
-        v = math.factorial(v)
-        v //= (x + y)
-        v %= 982451653
-
-        if (x, y) not in lookup_table:
-            lookup_table[(x+y)] = slowfun_inner(x, y)
-        return lookup_table[v]
+        if v not in cache:
+            cache[v] = math.factorial(v)
+            cache[v] //= (x + y)
+            cache[v] %= 982451653
+        v = cache[v]
+        return v
     return slowfun_inner(x, y)
             
 
