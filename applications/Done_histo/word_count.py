@@ -23,6 +23,8 @@ def word_count(s):
     
     
 
+x = {'', 1}
+
 
 
 
