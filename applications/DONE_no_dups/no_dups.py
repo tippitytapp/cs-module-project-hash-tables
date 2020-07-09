@@ -1,5 +1,16 @@
 def no_dups(s):
     # Your code here
+    count = 0
+    words = {}
+    # print(words)
+    # print(s.split())
+    for word in s.split():
+        if word in words:
+            continue
+        else:
+            count +=1
+            words[word] = count
+    return ' '.join(words.keys())
 
 
 
